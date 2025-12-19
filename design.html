@@ -1,1 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GrandpaJoey | Designs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="gjfavicon.png" />
+
+  <style>
+    :root {
+      --bg: #050505;
+      --fg: #ffffff;
+      --muted: #b5b5b5;
+      --glass: rgba(255,255,255,0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #111 0%, #000 65%);
+      color: var(--fg);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(255,255,255,0.05), transparent 60%),
+        linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.85));
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4"/></filter><rect width="200" height="200" filter="url(%23n)" opacity="0.035"/></svg>');
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      z-index: 1000;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: var(--fg);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      opacity: 0.85;
+      transition: opacity 0.25s ease;
+    }
+
+    nav a:hover { opacity: 1; }
+
+    .nav-right {
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 6rem 2rem 2rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    .hero p {
+      margin-top: 1rem;
+      max-width: 800px;
+      font-size: 1.15rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* SECTION BUTTONS */
+    .section-buttons {
+      position: sticky;
+      top: 72px;
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 2rem;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(10px);
+      z-index: 900;
+      overflow-x: auto;
+    }
+
+    .section-buttons a {
+      padding: 0.6rem 1rem;
+      border-radius: 14px;
+      background: var(--glass);
+      color: var(--fg);
+      text-decoration: none;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: background 0.25s ease;
+    }
+
+    .section-buttons a:hover {
+      background: rgba(255,255,255,0.12);
+    }
+
+    /* CONTENT */
+    section.content {
+      padding: 6rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    section.content h2 {
+      font-size: 2.4rem;
+      margin-bottom: 2rem;
+    }
+
+    .image-card {
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(12px);
+      border-radius: 24px;
+      padding: 1.5rem;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      cursor: zoom-in;
+    }
+
+    .image-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 45px 120px rgba(0,0,0,0.85);
+    }
+
+    .image-card img {
+      width: 100%;
+      border-radius: 16px;
+      display: block;
+    }
+
+    /* LIGHTBOX */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      cursor: zoom-out;
+    }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 20px;
+      box-shadow: 0 50px 140px rgba(0,0,0,0.9);
+    }
+
+    @media (max-width: 900px) {
+      .section-buttons { gap: 0.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-left">
+      <a href="https://discordapp.com/users/869197667505430569" target="_blank">Discord</a>
+      <a href="https://www.roblox.com/users/1515641731/profile" target="_blank">Roblox</a>
+      <a href="rp.html">RP Experiences</a>
+      <a href="index.html">Home</a>
+    </div>
+    <div class="nav-right">Grandpa Joey</div>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <h1>My Designs</h1>
+      <p>
+        A curated showcase of my design work across multiple formats and communities.
+      </p>
+    </div>
+  </section>
+
+  <div class="section-buttons">
+    <a href="#roles">Roles</a>
+    <a href="#channels">Channels</a>
+    <a href="#forms">Forms</a>
+    <a href="#emojis">Emojis</a>
+    <a href="#banners">Banners</a>
+    <a href="#logos">Logos</a>
+    <a href="#liveries">Liveries</a>
+  </div>
+
+  <section id="roles" class="content">
+    <h2>Roles</h2>
+    <div class="image-card" onclick="openLightbox('rolesgrid.png')">
+      <img src="rolesgrid.png" alt="Roles design grid" />
+    </div>
+  </section>
+
+  <section id="channels" class="content">
+    <h2>Channels</h2>
+    <div class="image-card" onclick="openLightbox('channelsgrid.png')">
+      <img src="channelsgrid.png" alt="Channels design grid" />
+    </div>
+  </section>
+
+  <section id="forms" class="content">
+    <h2>Forms</h2>
+    <div class="image-card" onclick="openLightbox('formsgrid.png')">
+      <img src="formsgrid.png" alt="Forms design grid" />
+    </div>
+  </section>
+
+  <section id="emojis" class="content">
+    <h2>Emojis</h2>
+    <div class="image-card" onclick="openLightbox('emojisgrid.png')">
+      <img src="emojisgrid.png" alt="Emojis design grid" />
+    </div>
+  </section>
+
+  <section id="banners" class="content">
+    <h2>Banners</h2>
+    <div class="image-card" onclick="openLightbox('bannersgrid.png')">
+      <img src="bannersgrid.png" alt="Banners design grid" />
+    </div>
+  </section>
+
+  <section id="logos" class="content">
+    <h2>Logos</h2>
+    <div class="image-card" onclick="openLightbox('logogrid.png')">
+      <img src="logogrid.png" alt="Logos design grid" />
+    </div>
+  </section>
+
+  <section id="liveries" class="content">
+    <h2>Liveries</h2>
+    <div class="image-card" onclick="openLightbox('liveriesgrid.png')">
+      <img src="liveriesgrid.png" alt="Liveries design grid" />
+    </div>
+  </section>
+
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lightboxImg" src="" alt="Expanded design" />
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      const lb = document.getElementById('lightbox');
+      const img = document.getElementById('lightboxImg');
+      img.src = src;
+      lb.style.display = 'flex';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
 
